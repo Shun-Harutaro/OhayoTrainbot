@@ -1,12 +1,13 @@
 import tweepy
 import urllib.request
+import os
 import change #change.py を参照
 
 # OAuthHandler
-CK = '*********************************' # Consumer Key
-CS = '*********************************' # Consumer Secret
-AT = '*********************************' # Access Token
-AS = '*********************************' # Accesss Token Secert
+CK = os.environ["CONSUMER_KEY"] # Consumer Key
+CS = os.environ["CONSUMER_SECRET"] # Consumer Secret
+AT = os.environ["ACCESS_TOKEN"] # Access Token
+AS = os.environ["ACCESS_TOKEN_SECRET"] # Accesss Token Secert
 
 # log.txt の取得
 with open('log.txt') as logs:
