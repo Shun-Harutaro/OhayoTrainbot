@@ -2,17 +2,30 @@ import tweepy
 import urllib.request
 import os
 import change #change.py を参照
+import psycopg2
 
-# OAuthHandler
+# OAuthHandler（環境変数）
 CK = os.environ["CONSUMER_KEY"] # Consumer Key
 CS = os.environ["CONSUMER_SECRET"] # Consumer Secret
 AT = os.environ["ACCESS_TOKEN"] # Access Token
 AS = os.environ["ACCESS_TOKEN_SECRET"] # Accesss Token Secert
 
-# log.txt の取得
-with open('log.txt') as logs:
-    log = (logs.read())
-usephoto,usevar = map(int,log.split()) # usephoto:写真の番号 usevar:車両型式配列のキー
+# Database Credentials（環境変数）
+host = os.environ["host"]
+database = os.environ["database"]
+user = os.environ["user"]
+password = os.environ["password"]
+
+# connect postgreSQL
+dsn = "host="+host+" port=5432 dbname="+database+" user="+user+" password="+password
+conn = psycopg2.connect(dsn)
+
+# excexute sql
+cur = conn.cursor()
+cur.execute('SELECT * FROM use;')
+use = cur.fetchall()
+usephoto = use[0][0] # usephoto:写真の番号
+usevar = use[0][1] # usevar:車両型式配列のキー
 
 # URLの生成
 with open('url.txt') as urls:
@@ -46,8 +59,12 @@ if nextphoto == num : # 写真の番号が写真の数と等しくなったと�
     nextphoto = 0
     nextvar = nextvar + 1
 
-f = open('log.txt','w') # log.txtの書き換え
-f.write(str(nextphoto)+' '+str(nextvar))
-f.close
+# DBの内容を変更する
+cur.execute('UPDATE use SET photo = %s;' % nextphoto)
+cur.execute('UPDATE use SET var = %s;' % nextvar)
+conn.commit()
+
+cur.close()
+conn.close()
 
 
