@@ -28,3 +28,9 @@ http://shunshunharu.html.xdomain.jp/jr-west/683 4
 http://shunshunharu.html.xdomain.jp/jr-west/kiha-40 1
 http://shunshunharu.html.xdomain.jp/jr-west/kiha-120 2
 http://shunshunharu.html.xdomain.jp/jr-west/kiha-187 1
+http://shunshunharu.html.xdomain.jp/jr-shikoku/1000 1
+http://shunshunharu.html.xdomain.jp/jr-shikoku/2000 4
+http://shunshunharu.html.xdomain.jp/jr-shikoku/2700 2
+http://shunshunharu.html.xdomain.jp/jr-shikoku/5000 2
+http://shunshunharu.html.xdomain.jp/jr-shikoku/N2000 1
+http://shunshunharu.html.xdomain.jp/jr-shikoku/kiha-1500 1
